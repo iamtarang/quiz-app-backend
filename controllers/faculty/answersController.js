@@ -106,7 +106,7 @@ export const answerController = {
 			//? Inserting in an database
 			await MARKS.create(studentWeightageArray[0]);
 
-			res.json({ message: "Quiz ended successfully" });
+			res.status(200).json({ message: "Quiz ended successfully" });
 
 		} catch (error) {
 			return res.json(error);

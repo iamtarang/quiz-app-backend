@@ -43,7 +43,7 @@ const STUDENTS = sequelize.define('students_data', {
 		allowNull: true,
 	}
 }, {
-	timestamps: false
+	timestamps: false,
 });
 
 export default STUDENTS; 

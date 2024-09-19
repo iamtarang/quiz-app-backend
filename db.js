@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import { config } from 'dotenv';
 
-config();
+config(); 
 // Example for postgres
 export const sequelize = new Sequelize(process.env.CON) 
 

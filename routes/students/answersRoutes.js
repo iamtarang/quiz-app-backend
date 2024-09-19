@@ -6,7 +6,7 @@ const answerRouter = express.Router();
 //! Question Operations
 
 //? get all answers
-answerRouter.get('/get', answerController.getAllAnswers);
+answerRouter.post('/get', answerController.getAllAnswers);
 
 //? create answers
 answerRouter.post('/submit', answerController.submitAnswers);

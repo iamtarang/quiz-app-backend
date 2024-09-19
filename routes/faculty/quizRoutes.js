@@ -5,37 +5,37 @@ const quizRouter = express.Router();
 
 //! Quiz Operations
 
-//? get all quizs
-quizRouter.get('/get/:id', quizController.getAllQuiz);
+//? post all quizzes
+quizRouter.post('/get', quizController.getAllQuiz);
 
-//? get all quizs
-quizRouter.get('/get/:id', quizController.getAllFacultyQuiz);
+//? post all quizzes
+quizRouter.post('/getFacultyQuiz', quizController.getFacultyQuiz);
 
-//? get active quizs
-quizRouter.post('/getActiveQuiz/:id', quizController.getActiveQuiz);
+//? post active quizzes
+quizRouter.post('/getActiveQuiz', quizController.getActiveQuiz);
 
-//? get inactive quizs
-quizRouter.post('/getInactiveQuiz/:id', quizController.getInactiveQuiz);
+//? post inactive quizzes
+quizRouter.post('/getInactiveQuiz', quizController.getInactiveQuiz);
 
-//? create quizs
+//? create quizzes
 quizRouter.post('/create', quizController.createQuiz);
 
-//? update quizs
-quizRouter.patch('/update/:id', quizController.updateQuiz);
+//? update quizzes
+quizRouter.post('/updateQuiz', quizController.updateQuiz);
 
-//? enable quizs
-quizRouter.patch('/enable/:id', quizController.enableQuiz);
+//? enable quizzes
+quizRouter.post('/enableQuiz', quizController.enableQuiz);
 
-//? disable quizs
-quizRouter.patch('/disable/:id', quizController.disableQuiz);
+//? disable quizzes
+quizRouter.post('/disableQuiz', quizController.disableQuiz);
 
-//? delete quizs
-quizRouter.patch('/delete/:id', quizController.removeQuiz);
+//? delete quizzes
+quizRouter.post('/delete/:id', quizController.removeQuiz);
 
-//? destroy quizs
+//? destroy quizzes
 quizRouter.delete('/destroy/:id', quizController.destroyQuiz);
 
-quizRouter.post('/answers/:id', quizController.saveAnswers);
+// quizRouter.post('/answers', quizController.saveAnswers);
 
 
 export default quizRouter;

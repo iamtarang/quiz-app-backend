@@ -5,7 +5,7 @@ const adminRouter = express.Router();
 //! Admin Operations
 
 //? get all admins
-adminRouter.get('/get', adminController.getAllAdmin);
+adminRouter.post('/get', adminController.getAllAdmin);
 
 //? create admins
 adminRouter.post('/create', adminController.createAdmin);
@@ -20,7 +20,7 @@ adminRouter.patch('/enable/:id', adminController.enableAdmin);
 adminRouter.patch('/disable/:id', adminController.disableAdmin);
 
 //? delete admins
-adminRouter.patch('/delete/:id', adminController.removeAdmin);
+adminRouter.patch('/delete/:id', adminController.deleteAdmin);
 
 //? destroy admins
 adminRouter.delete('/destroy/:id', adminController.destroyAdmin);

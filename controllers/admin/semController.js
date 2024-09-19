@@ -18,7 +18,7 @@ export const semController = {
 			receivedData.deleted = false;
 
 			await SEM.create(receivedData);
-			return res.send("Record inserted successfully! 🚀");
+			return res.status(200).json({ message: "Record inserted successfully! 🚀" });
 
 		} catch (error) {
 			return res.json(error);

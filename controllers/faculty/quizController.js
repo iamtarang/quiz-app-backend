@@ -11,25 +11,25 @@ export const quizController = {
 					deleted: false
 				}
 			})
-			res.json(quiz)
+			res.status(200).json({ quiz })
 		} catch (error) {
-			res.json(error)
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	//!For Faculty Panel
-	getAllFacultyQuiz: async (req, res) => {
+	getFacultyQuiz: async (req, res) => {
 		try {
 			const quiz = await QUIZ.findAll({
 				where: {
-					creator_id: req.params.id,
+					creator_id: req.body.id,
 					status: true,
 					deleted: false
 				}
 			})
 			res.json(quiz)
 		} catch (error) {
-			res.json(error)
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
@@ -42,9 +42,9 @@ export const quizController = {
 					deleted: false
 				}
 			})
-			res.json(quiz)
+			res.status(200).json({ quiz })
 		} catch (error) {
-			res.json(error)
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
@@ -57,9 +57,9 @@ export const quizController = {
 					deleted: false
 				}
 			})
-			res.json(quiz)
+			res.status(200).json({ quiz })
 		} catch (error) {
-			res.json(error)
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
@@ -70,132 +70,110 @@ export const quizController = {
 			receivedData.deleted = false;
 
 			await QUIZ.create(receivedData);
-			return res.send("Quiz created successfully! 🚀");
+			res.status(200).json({ message: "Quiz created successfully! 🚀" })
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	updateQuiz: async (req, res) => {
 		try {
-			const quiz = await QUIZ.findByPk(req.params.id);
+			const quiz = await QUIZ.findByPk(req.body.id);
 
 			if (!quiz) {
-				return res.send("Quiz Not Found");
+				return res.status(404).json({ message: "Quiz not found" })
 			}
 			else {
 				await QUIZ.update(req.body, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Quiz updated successfully! 🚀" })
 			}
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	enableQuiz: async (req, res) => {
 		try {
-			const quiz = await QUIZ.findByPk(req.params.id);
+			const quiz = await QUIZ.findByPk(req.body.id);
 
 			if (!quiz) {
-				return res.send("Quiz Not Found");
+				return res.status(404).json({ message: "Quiz not found" })
 			}
 			else {
 				await QUIZ.update({ status: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Quiz updated successfully! 🚀" })
 			}
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	disableQuiz: async (req, res) => {
 		try {
-			const quiz = await QUIZ.findByPk(req.params.id);
+			const quiz = await QUIZ.findByPk(req.body.id);
 
 			if (!quiz) {
-				return res.send("Quiz Not Found");
+				return res.status(404).json({ message: "Quiz not found" })
 			}
 			else {
 				await QUIZ.update({ status: 0 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Quiz updated successfully! 🚀" })
 			}
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	removeQuiz: async (req, res) => {
 		try {
-			const quiz = await QUIZ.findByPk(req.params.id);
+			const quiz = await QUIZ.findByPk(req.body.id);
 
 			if (!quiz) {
-				return res.send("Quiz Not Found");
+				return res.status(404).json({ message: "Quiz not found" })
 			}
 			else {
 				await QUIZ.update({ deleted: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
-				return res.send("Record deleted successfully! 🚀");
+				return res.status(200).json({ message: "Quiz deleted successfully! 🚀" })
 			}
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
 	},
 
 	destroyQuiz: async (req, res) => {
 		try {
-			const quiz = await QUIZ.findByPk(req.params.id);
+			const quiz = await QUIZ.findByPk(req.body.id);
 
 			if (!quiz) {
-				return res.send("Quiz Not Found");
+				return res.status(404).json({ message: "Quiz not found" })
 			}
 			else {
 				await QUIZ.destroy({
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
-				return res.send("Record destroyed successfully! 🚀");
+				return res.status(200).json({ message: "Quiz destroyed successfully! 🚀" })
 			}
 		} catch (error) {
-			return res.json(error);
+			return res.status(500).json({ error: error, message: "Internal Server error" })
 		}
-	},
-
-	/**
-	 * Function to store answers and calculate result
-	 * @param {*} req Request Object
-	 * @param {*} res Response Object
-	 */
-	saveAnswers: async (req, res) => {
-
-		// Validate Request data
-
-		// Check if quiz exist
-
-		// Loop out answers and store in database
-
-		// Check if question exist
-
-		// Calculate result
-
-		// Save Result to database
-
-		// Send Response
-
 	}
+
 }

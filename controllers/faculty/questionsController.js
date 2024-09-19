@@ -1,3 +1,4 @@
+import multer from "multer";
 import MARKS from "../../models/MARKS.js";
 import QUESTION from "../../models/QUESTIONS.js";
 
@@ -14,7 +15,7 @@ export const questionController = {
 
 			if (check[0] == null) {
 				const question = await QUESTION.findAll({
-					attributes: ["question_id", "question_text", "correct_option", "weightage"],
+					attributes: ["question_id", "question_text", "question_imgfile", "correct_option", "weightage"],
 					where: {
 						quiz_id: req.body.quiz_id,
 						status: true,
@@ -23,7 +24,7 @@ export const questionController = {
 				})
 
 				const options = await QUESTION.findAll({
-					attributes: ["question_id", "option_1_text", "option_2_text", "option_3_text", "option_4_text"],
+					attributes: ["question_id", "option_1_text", "option_1_imgfile", "option_2_text", "option_2_imgfile", "option_3_text", "option_3_imgfile", "option_4_text", "option_4_imgfile"],
 					where: {
 						quiz_id: req.body.quiz_id,
 						status: true,
@@ -39,7 +40,7 @@ export const questionController = {
 					return array;
 				}
 
-				// Helper function to shuffle an object's key-value pairs
+				//* Helper function to shuffle an object's key-value pairs
 				function shuffleObjectKeys(object) {
 					const keys = Object.keys(object);
 					const shuffledKeys = shuffleArray(keys);
@@ -52,7 +53,7 @@ export const questionController = {
 					return shuffledObject;
 				}
 
-				// Shuffle the options for each question
+				//* Shuffle the options for each question
 				const shuffledOptions = question.map((q) => {
 					const optionsForQuestion = options.filter((opt) => opt.question_id === q.question_id);
 
@@ -64,21 +65,21 @@ export const questionController = {
 					return { ...q.toJSON(), options: shuffledOptionsForQuestion };
 				});
 
-				// Shuffle the questions array
+				//* Shuffle the questions array
 				const shuffledQuestions = shuffleArray(shuffledOptions);
 
-				res.json(shuffledQuestions);
+				res.status(200).json(shuffledQuestions);
 			}
 			else {
-				res.send({ message: "You have already submitted the quiz", check: check })
+				res.status(200).json({ message: "You have already submitted the quiz", check: check })
 			}
 
 		} catch (error) {
-			console.log(error)
-			res.json(error)
+			res.status(500).json(error)
 		}
 	},
 
+	// * get all questions
 	getQuestionsFaculty: async (req, res) => {
 		try {
 			const question = await QUESTION.findAll({
@@ -94,6 +95,10 @@ export const questionController = {
 			console.log(error)
 			res.json(error)
 		}
+	},
+
+	uploadImages: async (req, res) => {
+
 	},
 
 	createQuestions: async (req, res) => {

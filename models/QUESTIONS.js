@@ -16,32 +16,32 @@ const QUESTION = sequelize.define('questions', {
 	question_text: {
 		type: DataTypes.STRING(225),
 	},
-	question_img_filename: {
-		type: DataTypes.STRING(225),
+	question_imgfile: {
+		type: DataTypes.BOOLEAN,
 	},
 	option_1_text: {
 		type: DataTypes.STRING(225),
 	},
-	option_1_img_filename: {
-		type: DataTypes.STRING(225),
+	option_1_imgfile: {
+		type: DataTypes.BOOLEAN,
 	},
 	option_2_text: {
 		type: DataTypes.STRING(225),
 	},
-	option_2_img_filename: {
-		type: DataTypes.STRING(225),
+	option_2_imgfile: {
+		type: DataTypes.BOOLEAN,
 	},
 	option_3_text: {
 		type: DataTypes.STRING(225),
 	},
-	option_3_img_filename: {
-		type: DataTypes.STRING(225),
+	option_3_imgfile: {
+		type: DataTypes.BOOLEAN,
 	},
 	option_4_text: {
 		type: DataTypes.STRING(225),
 	},
-	option_4_img_filename: {
-		type: DataTypes.STRING(225),
+	option_4_imgfile: {
+		type: DataTypes.BOOLEAN,
 	},
 	correct_option: {
 		type: DataTypes.STRING(225),

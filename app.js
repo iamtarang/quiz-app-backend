@@ -3,7 +3,6 @@ import { connectDB } from './db.js';
 import apiRoutes from './routes/allRoutes.js';
 import { config } from 'dotenv';
 import cors from 'cors'
-import session from 'express-session';
 import loginRouter from './routes/loginRoute.js';
 
 const app = express();
@@ -14,14 +13,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(cors())
 
-app.use(
-  session({
-    key: "id",
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true
-  })
-);
 
 app.use(express.json());
 app.use(urlencoded({ extended: false }));

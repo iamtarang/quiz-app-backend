@@ -5,12 +5,12 @@ import jwt from "jsonwebtoken";
 
 config();
 
-const SECRET_KEY = process.env.SECRET
+const SECRET_KEY = process.env.ACCESS_TOKEN_SECRET
 
 export const loginController = {
 
 	login: async (req, res, next) => {
-		console.log("first");
+
 		try {
 			const user = await USERS.findOne({ where: { email: req.body.email } })
 			if (!user) {
@@ -23,7 +23,7 @@ export const loginController = {
 					}
 					if (data) {
 
-						const admins = await USERS.findAll({
+						const users = await USERS.findAll({
 							attributes: ["id", "name", "roles"],
 							where: {
 								email: req.body.email,
@@ -32,13 +32,13 @@ export const loginController = {
 							}
 						})
 
-						if (admins) {
+						if (users) {
 							// Create a JWT token
 							const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
 								expiresIn: '4h', // Token expiration time (optional)
 							});
 
-							return res.status(200).json({ message: 'Login successful', token });
+							return res.status(200).json({ message: 'Login successful', token, users });
 						}
 						else {
 							return res.status(404).json({ message: 'User Disabled' });

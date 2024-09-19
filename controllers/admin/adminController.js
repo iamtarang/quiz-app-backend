@@ -4,12 +4,7 @@ import bcrypt from "bcrypt"
 
 export const adminController = {
 
-	/**
-	 * 
-	 * @param {*} req 
-	 * @param {*} res 
-	 * @param {*} next 
-	 */
+	/* */
 	getAllAdmin: async (req, res) => {
 		try {
 			const admins = await USERS.findAll({
@@ -19,11 +14,9 @@ export const adminController = {
 					deleted: false
 				}
 			})
-			console.log("here2");
-			res.json(admins)
+			return res.status(200).json({ message: "success", data: admins });
 		} catch (error) {
-			console.log("here");
-			res.json(error)
+			return res.json(error)
 		}
 	},
 
@@ -37,9 +30,8 @@ export const adminController = {
 			receivedData.deleted = false;
 
 			await USERS.create(receivedData);
-			return res.send("Record inserted successfully! 🚀");
+			return res.status(200).json({ message: "User created successfully" });
 		} catch (error) {
-			console.log("first")
 			return res.json(error);
 		}
 	},
@@ -49,7 +41,7 @@ export const adminController = {
 			const users = await USERS.findByPk(req.params.id);
 
 			if (!users) {
-				return res.send("User Not Found");
+				return res.status(404).json({ message: "Record not found" });
 			}
 			else {
 				await USERS.update(req.body, {
@@ -57,7 +49,7 @@ export const adminController = {
 						id: req.params.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Record updated successfully" });
 			}
 		} catch (error) {
 			return res.json(error);
@@ -69,7 +61,7 @@ export const adminController = {
 			const users = await USERS.findByPk(req.params.id);
 
 			if (!users) {
-				return res.send("User Not Found");
+				return res.status(404).json({ message: "Record not found" });
 			}
 			else {
 				await USERS.update({ status: 1 }, {
@@ -77,7 +69,7 @@ export const adminController = {
 						id: req.params.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Record updated successfully" });
 			}
 		} catch (error) {
 			return res.json(error);
@@ -89,7 +81,7 @@ export const adminController = {
 			const users = await USERS.findByPk(req.params.id);
 
 			if (!users) {
-				return res.send("User Not Found");
+				return res.status(404).json({ message: "Record not found" });
 			}
 			else {
 				await USERS.update({ status: 0 }, {
@@ -97,19 +89,19 @@ export const adminController = {
 						id: req.params.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Record updated successfully" });
 			}
 		} catch (error) {
 			return res.json(error);
 		}
 	},
 
-	removeAdmin: async (req, res) => {
+	deleteAdmin: async (req, res) => {
 		try {
 			const users = await USERS.findByPk(req.params.id);
 
 			if (!users) {
-				return res.send("User Not Found");
+				return res.status(404).json({ message: "Record not found" });
 			}
 			else {
 				await USERS.update({ deleted: 1 }, {
@@ -117,7 +109,7 @@ export const adminController = {
 						id: req.params.id
 					}
 				});
-				return res.send("Record updated successfully! 🚀");
+				return res.status(200).json({ message: "Record deleted successfully" });
 			}
 		} catch (error) {
 			return res.json(error);
@@ -129,7 +121,7 @@ export const adminController = {
 			const users = await USERS.findByPk(req.params.id);
 
 			if (!users) {
-				return res.send("User Not Found");
+				return res.status(404).json({ message: "Record not found" });
 			}
 			else {
 				await USERS.destroy({
@@ -137,7 +129,7 @@ export const adminController = {
 						id: req.params.id
 					}
 				});
-				return res.send("Record destroyed successfully! 🚀");
+				return res.status(200).json({ message: "Record destroyed successfully" });
 			}
 		} catch (error) {
 			return res.json(error);
