@@ -6,25 +6,25 @@ const semRouter = express.Router();
 //! Sem Operations
 
 //? get all sems
-semRouter.get('/get', semController.getAllSem);
+semRouter.post('/get', semController.getAllSem);
 
 //? create sems
 semRouter.post('/create', semController.createSem);
 
 //? update sems
-semRouter.patch('/update/:id', semController.updateSem);
+semRouter.post('/update', semController.updateSem);
 
 //? enable sems
-semRouter.patch('/enable/:id', semController.enableSem);
+semRouter.post('/enable', semController.enableSem);
 
 //? disable sems
-semRouter.patch('/disable/:id', semController.disableSem);
+semRouter.post('/disable', semController.disableSem);
 
 //? delete sems
-semRouter.patch('/delete/:id', semController.removeSem);
+semRouter.post('/delete', semController.removeSem);
 
 //? destroy sems
-semRouter.delete('/destroy/:id', semController.destroySem);
+semRouter.delete('/destroy', semController.destroySem);
 
 
 export default semRouter;

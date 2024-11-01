@@ -1,4 +1,7 @@
+import COURSE from "../../models/COURSE.js";
 import QUIZ from "../../models/QUIZ.js";
+import SEM from "../../models/SEM.js";
+import SUBJECT from "../../models/SUBJECT.js";
 
 
 export const quizController = {
@@ -25,13 +28,27 @@ export const quizController = {
 					creator_id: req.body.id,
 					status: true,
 					deleted: false
-				}
-			})
-			res.json(quiz)
+				},
+				include: [
+					{
+						model: COURSE,
+						attributes: ['course_name']
+					},
+					{
+						model: SEM,
+						attributes: ['semester']
+					},
+					{
+						model: SUBJECT,
+						attributes: ['subject']
+					}
+				]
+			});
+			res.json(quiz);
 		} catch (error) {
-			return res.status(500).json({ error: error, message: "Internal Server error" })
+			return res.status(500).json({ error: error.message, message: "Internal Server Error" });
 		}
-	},
+	},	
 
 	getActiveQuiz: async (req, res) => {
 		try {

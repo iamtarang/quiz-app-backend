@@ -26,7 +26,7 @@ export const subjectController = {
 
 	updateSubject: async (req, res, next) => {
 		try {
-			const subjects = await SUBJECT.findByPk(req.params.id);
+			const subjects = await SUBJECT.findByPk(req.body.id);
 
 			if (!subjects) {
 				return res.send("Subject Not Found");
@@ -34,7 +34,7 @@ export const subjectController = {
 			else {
 				await SUBJECT.update(req.body, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -46,7 +46,7 @@ export const subjectController = {
 
 	enableSubject: async (req, res, next) => {
 		try {
-			const subjects = await SUBJECT.findByPk(req.params.id);
+			const subjects = await SUBJECT.findByPk(req.body.id);
 
 			if (!subjects) {
 				return res.send("Subject Not Found");
@@ -54,7 +54,7 @@ export const subjectController = {
 			else {
 				await SUBJECT.update({ status: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -66,7 +66,7 @@ export const subjectController = {
 
 	disableSubject: async (req, res, next) => {
 		try {
-			const subjects = await SUBJECT.findByPk(req.params.id);
+			const subjects = await SUBJECT.findByPk(req.body.id);
 
 			if (!subjects) {
 				return res.send("Subject Not Found");
@@ -74,7 +74,7 @@ export const subjectController = {
 			else {
 				await SUBJECT.update({ status: 0 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -86,7 +86,7 @@ export const subjectController = {
 
 	removeSubject: async (req, res, next) => {
 		try {
-			const subjects = await SUBJECT.findByPk(req.params.id);
+			const subjects = await SUBJECT.findByPk(req.body.id);
 
 			if (!subjects) {
 				return res.send("Subject Not Found");
@@ -94,7 +94,7 @@ export const subjectController = {
 			else {
 				await SUBJECT.update({ deleted: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -106,7 +106,7 @@ export const subjectController = {
 
 	destroySubject: async (req, res, next) => {
 		try {
-			const subjects = await SUBJECT.findByPk(req.params.id);
+			const subjects = await SUBJECT.findByPk(req.body.id);
 
 			if (!subjects) {
 				return res.send("Subject Not Found");
@@ -114,7 +114,7 @@ export const subjectController = {
 			else {
 				await SUBJECT.destroy({
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record destroyed successfully! 🚀");

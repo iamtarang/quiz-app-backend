@@ -27,7 +27,7 @@ export const semController = {
 
 	updateSem: async (req, res, next) => {
 		try {
-			const sems = await SEM.findByPk(req.params.id);
+			const sems = await SEM.findByPk(req.body.id);
 
 			if (!sems) {
 				return res.send("Sem Not Found");
@@ -35,7 +35,7 @@ export const semController = {
 			else {
 				await SEM.update(req.body, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -47,7 +47,7 @@ export const semController = {
 
 	enableSem: async (req, res, next) => {
 		try {
-			const sems = await SEM.findByPk(req.params.id);
+			const sems = await SEM.findByPk(req.body.id);
 
 			if (!sems) {
 				return res.send("Sem Not Found");
@@ -55,7 +55,7 @@ export const semController = {
 			else {
 				await SEM.update({ status: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -67,7 +67,7 @@ export const semController = {
 
 	disableSem: async (req, res, next) => {
 		try {
-			const sems = await SEM.findByPk(req.params.id);
+			const sems = await SEM.findByPk(req.body.id);
 
 			if (!sems) {
 				return res.send("Sem Not Found");
@@ -75,7 +75,7 @@ export const semController = {
 			else {
 				await SEM.update({ status: 0 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -87,7 +87,7 @@ export const semController = {
 
 	removeSem: async (req, res, next) => {
 		try {
-			const sems = await SEM.findByPk(req.params.id);
+			const sems = await SEM.findByPk(req.body.id);
 
 			if (!sems) {
 				return res.send("Sem Not Found");
@@ -95,7 +95,7 @@ export const semController = {
 			else {
 				await SEM.update({ deleted: 1 }, {
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record updated successfully! 🚀");
@@ -107,7 +107,7 @@ export const semController = {
 
 	destroySem: async (req, res, next) => {
 		try {
-			const sems = await SEM.findByPk(req.params.id);
+			const sems = await SEM.findByPk(req.body.id);
 
 			if (!sems) {
 				return res.send("Sem Not Found");
@@ -115,7 +115,7 @@ export const semController = {
 			else {
 				await SEM.destroy({
 					where: {
-						id: req.params.id
+						id: req.body.id
 					}
 				});
 				return res.send("Record destroyed successfully! 🚀");

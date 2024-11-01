@@ -1,4 +1,3 @@
-import multer from "multer";
 import MARKS from "../../models/MARKS.js";
 import QUESTION from "../../models/QUESTIONS.js";
 
@@ -57,7 +56,7 @@ export const questionController = {
 				const shuffledOptions = question.map((q) => {
 					const optionsForQuestion = options.filter((opt) => opt.question_id === q.question_id);
 
-					// Shuffle the key-value pairs inside each option object
+					//* Shuffle the key-value pairs inside each option object
 					const shuffledOptionsForQuestion = optionsForQuestion.map((opt) =>
 						shuffleObjectKeys(opt.toJSON())
 					);

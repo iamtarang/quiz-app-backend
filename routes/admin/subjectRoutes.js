@@ -6,25 +6,25 @@ const subjectRouter = express.Router();
 //! Subject Operations
 
 //? get all subjects
-subjectRouter.get('/get', subjectController.getAllSubject);
+subjectRouter.post('/get', subjectController.getAllSubject);
 
 //? create subjects
 subjectRouter.post('/create', subjectController.createSubject);
 
 //? update subjects
-subjectRouter.patch('/update/:id', subjectController.updateSubject);
+subjectRouter.post('/update', subjectController.updateSubject);
 
 //? enable subjects
-subjectRouter.patch('/enable/:id', subjectController.enableSubject);
+subjectRouter.post('/enable', subjectController.enableSubject);
 
 //? disable subjects
-subjectRouter.patch('/disable/:id', subjectController.disableSubject);
+subjectRouter.post('/disable', subjectController.disableSubject);
 
 //? delete subjects
-subjectRouter.patch('/delete/:id', subjectController.removeSubject);
+subjectRouter.post('/delete', subjectController.removeSubject);
 
 //? destroy subjects
-subjectRouter.delete('/destroy/:id', subjectController.destroySubject);
+subjectRouter.delete('/destroy', subjectController.destroySubject);
 
 
 export default subjectRouter;

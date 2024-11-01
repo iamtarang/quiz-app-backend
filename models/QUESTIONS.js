@@ -1,4 +1,3 @@
-
 import { DataTypes } from "sequelize";
 import { sequelize } from '../db.js';
 import QUIZ from "./QUIZ.js";
@@ -17,31 +16,31 @@ const QUESTION = sequelize.define('questions', {
 		type: DataTypes.STRING(225),
 	},
 	question_imgfile: {
-		type: DataTypes.BOOLEAN,
+		type: DataTypes.TEXT, // Updated to store image URL
 	},
 	option_1_text: {
 		type: DataTypes.STRING(225),
 	},
 	option_1_imgfile: {
-		type: DataTypes.BOOLEAN,
+		type: DataTypes.TEXT, // Updated to store image URL
 	},
 	option_2_text: {
 		type: DataTypes.STRING(225),
 	},
 	option_2_imgfile: {
-		type: DataTypes.BOOLEAN,
+		type: DataTypes.TEXT, // Updated to store image URL
 	},
 	option_3_text: {
 		type: DataTypes.STRING(225),
 	},
 	option_3_imgfile: {
-		type: DataTypes.BOOLEAN,
+		type: DataTypes.TEXT, // Updated to store image URL
 	},
 	option_4_text: {
 		type: DataTypes.STRING(225),
 	},
 	option_4_imgfile: {
-		type: DataTypes.BOOLEAN,
+		type: DataTypes.TEXT, // Updated to store image URL
 	},
 	correct_option: {
 		type: DataTypes.STRING(225),
